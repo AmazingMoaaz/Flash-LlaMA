@@ -60,9 +60,10 @@ go run main.go -file example.php -save /home/reports -config config.json
 
 The `main.go` file contains the LLaMA API endpoint. Configure it as shown below:
 
-```json
-	// Initialize the Groq client with the API key from the config
-	client := groq.NewClient(groq.WithAPIKey("YOUR_API_KEY")) // Replace YOUR_API_KEY with your Groq API key
+```
+// Initialize the Groq client with the API key from the config
+client := groq.NewClient(groq.WithAPIKey("YOUR_API_KEY")) // Replace YOUR_API_KEY with your Groq API key
+
 ```
 
 Replace YOUR_API_KEY with your Groq API key. Ensure the file is correctly configured before running the tool.
