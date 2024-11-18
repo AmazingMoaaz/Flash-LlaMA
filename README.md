@@ -1,4 +1,4 @@
-# Flash
+# Flash-LLaMA
 
 <div align="center">
 
@@ -7,15 +7,15 @@
 
 </div>
 
-**Flash** is an AI-powered code vulnerability scanner designed to help developers identify security vulnerabilities in their code. By leveraging open-source AI models like **LLaMA**, Flash automates the review process for various coding languages and provides detailed reports with potential vulnerabilities, proof of concepts, and recommended fixes. Flash can generate reports in Markdown format, making it easy for developers to integrate security analysis into their workflow.
+**Flash-LLaMA** is an AI-powered code vulnerability scanner designed to help developers and cybersecurity professionals identify security vulnerabilities in their code. By leveraging **Groq's advanced LLaMA models**, Flash-LLaMA automates the code review process for various programming languages, providing detailed reports that include detected vulnerabilities, proof of concepts, and recommended fixes. It seamlessly integrates security analysis into your development workflow with Markdown-based reporting.
 
 ## Features
 
-- **AI-Powered Code Analysis**: Uses LLaMA models to analyze code and detect potential security vulnerabilities.
-- **Multi-Platform Support**: Works across various platforms and languages, making it a flexible solution for code review.
-- **Detailed Vulnerability Reports**: Generates reports with detailed descriptions of identified vulnerabilities, proof of concepts, and recommended fixes.
-- **Supports Multiple Languages**: Works with PHP, Python, JavaScript, and more.
+- **AI-Powered Code Analysis**: Leverages Groq's LLaMA models to identify vulnerabilities like SQL injection, XSS, CSRF, and insecure file handling.
+- **Multi-Language Support**: Scans code written in PHP, Python, JavaScript, and more.
 - **Markdown Report Generation**: Outputs security analysis in Markdown format for easy integration with GitHub and other platforms.
+- **Customizable Scanning**: Analyze individual files or entire directories for vulnerabilities.
+- **Graceful Shutdown**: Supports signal handling for secure termination during scans.
 
 ## Installation
 
@@ -62,23 +62,11 @@ The `config.json` file contains the LLaMA API endpoint. Configure it as shown be
 
 ```json
 {
-  "llama": {
-    "api_url": "http://localhost:8000/generate"
-  }
+  "groq_api_key": "YOUR_API_KEY"
 }
 ```
 
-This endpoint should point to a running instance of the LLaMA model API. Update the `api_url` to match your LLaMA setup.
-
-## Contribution
-
-Contributions are welcome! To contribute:
-
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature-branch-name`.
-3. Make your changes and commit them: `git commit -m 'Add new feature'`.
-4. Push to the branch: `git push origin feature-branch-name`.
-5. Open a pull request.
+Replace YOUR_API_KEY with your Groq API key. Ensure the file is correctly configured before running the tool.
 
 ## License
 
@@ -89,6 +77,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For questions or support, feel free to reach out to the repository owner.
 
 ---
-Developed with ❤️ by Mohammed Fathy @Secfathy
+Developed by @Secfathy
 
 Modified by @Moaz-Awad
