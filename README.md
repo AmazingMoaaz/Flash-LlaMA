@@ -48,8 +48,7 @@ Flash scans code files for vulnerabilities by sending code snippets to the LLaMA
 - `-file`: Path to the code file to be analyzed.
 - `-dir`: Path to the directory of files to be analyzed.
 - `-save`: Directory to save the results (default is current directory).
-- `-config`: Path to the configuration file (default is `config.json`).
-
+  
 ### Example:
 
 ```bash
@@ -63,7 +62,6 @@ The `main.go` file contains the LLaMA API endpoint. Configure it as shown below:
 ```
 // Initialize the Groq client with the API key from the config
 client := groq.NewClient(groq.WithAPIKey("YOUR_API_KEY")) // Replace YOUR_API_KEY with your Groq API key
-
 ```
 
 Replace YOUR_API_KEY with your Groq API key. Ensure the file is correctly configured before running the tool.
