@@ -56,14 +56,13 @@ Flash scans code files for vulnerabilities by sending code snippets to the LLaMA
 go run main.go -file example.php -save /home/reports -config config.json
 ```
 
-### Configuration File (config.json)
+### Setup YOUR API Key Form groq
 
-The `config.json` file contains the LLaMA API endpoint. Configure it as shown below:
+The `main.go` file contains the LLaMA API endpoint. Configure it as shown below:
 
 ```json
-{
-  "groq_api_key": "YOUR_API_KEY"
-}
+	// Initialize the Groq client with the API key from the config
+	client := groq.NewClient(groq.WithAPIKey("YOUR_API_KEY")) // Replace YOUR_API_KEY with your Groq API key
 ```
 
 Replace YOUR_API_KEY with your Groq API key. Ensure the file is correctly configured before running the tool.
