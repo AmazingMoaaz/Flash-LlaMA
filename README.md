@@ -2,8 +2,7 @@
 
 <div align="center">
 
-[![Go](https://img.shields.io/badge/Go-1.19-blue.svg?style=flat&logo=go)](https://golang.org)  
-[![Open Source](https://img.shields.io/badge/Open%20Source-%F0%9F%92%9A-brightgreen?style=flat)](https://opensource.org)
+[![Go](https://img.shields.io/badge/Go-1.19-blue.svg?style=flat&logo=go)](https://golang.org)  [![Open Source](https://img.shields.io/badge/Open%20Source-%F0%9F%92%9A-brightgreen?style=flat)](https://opensource.org)
 
 </div>
 
