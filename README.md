@@ -252,8 +252,6 @@ MIT License - See [LICENSE](LICENSE)
 [![Star](https://img.shields.io/github/stars/AmazingMoaaz/Flash-LLaMA?style=for-the-badge&color=yellow&logo=github)](https://github.com/AmazingMoaaz/Flash-LLaMA)
 [![Follow](https://img.shields.io/github/followers/AmazingMoaaz?style=for-the-badge&color=blue&logo=github)](https://github.com/AmazingMoaaz)
 
-<br>
-
-<sub>Made with ❤️ by the Security Community</sub>
+<sub>Made with ❤️ by AmazingMoaaz Community</sub>
 
 </div>
