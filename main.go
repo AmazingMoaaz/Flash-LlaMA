@@ -7,15 +7,23 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"syscall"
+
 	"source-code-review/config" // Import config package for ASCII art and colored logging
 	"source-code-review/internal/markdown"
 	"source-code-review/internal/scanner"
-	"syscall"
+
+	"github.com/joho/godotenv" // For loading environment variables from .env file
 
 	"github.com/jpoz/groq" // Import Groq Go SDK
 )
 
 func main() {
+	// Load environment variables from .env file
+	if err := godotenv.Load(); err != nil {
+		log.Fatalf("Error loading .env file: %v", err)
+	}
+
 	// Show ASCII art at startup
 	config.ShowASCII()
 
@@ -23,7 +31,7 @@ func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	// Command line arguments for file or directory and whether to use Groq
+	// Command line arguments for file or directory and save directory
 	filePtr := flag.String("file", "", "File to scan for vulnerabilities")
 	dirPtr := flag.String("dir", "", "Directory to scan for vulnerabilities")
 	saveDir := flag.String("save", ".", "Directory to save the results (default is current directory)") // Custom save directory
@@ -37,9 +45,7 @@ func main() {
 
 	// Signal handling routine in a separate goroutine
 	go func() {
-		// Wait for the signal
 		sig := <-sigs
-		// When a signal is received, attempt graceful shutdown
 		config.Info(fmt.Sprintf("Received signal: %s. Attempting graceful shutdown.", sig))
 		os.Exit(0)
 	}()
@@ -59,8 +65,14 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Initialize the Groq client with the API key from the config
-	client := groq.NewClient(groq.WithAPIKey("YOUR_API_KEY")) // Replace YOUR_API_KEY with your Groq API key
+	// Retrieve Groq API key from environment variables
+	groqAPIKey := os.Getenv("GROQ_API_KEY")
+	if groqAPIKey == "" {
+		log.Fatalf("GROQ_API_KEY is not set in the environment")
+	}
+
+	// Initialize the Groq client with the API key
+	client := groq.NewClient(groq.WithAPIKey(groqAPIKey))
 
 	// Iterate over the files and process each one
 	for _, file := range filesToScan {
@@ -83,15 +95,14 @@ func main() {
 			Model:    "llama-3.1-70b-versatile", // Use the appropriate model for your use case
 			Messages: messages,
 		})
-
 		if err != nil {
 			log.Fatalf("Error creating chat completion: %v", err)
 		}
 
 		// Save the result to a markdown file in the specified save directory
 		config.Info(fmt.Sprintf("Saving results for %s", file))
-		baseName := filepath.Base(file)                       // Get the base file name (without directories)
-		resultFile := filepath.Join(*saveDir, baseName+".md") // Save the result in the custom directory
+		baseName := filepath.Base(file)
+		resultFile := filepath.Join(*saveDir, baseName+".md")
 		err = markdown.SaveMarkdown(resultFile, response.Choices[0].Message.Content)
 		if err != nil {
 			config.Warn(fmt.Sprintf("Failed to save markdown for %s: %v", file, err))
